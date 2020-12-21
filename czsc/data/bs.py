@@ -93,8 +93,6 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
     if isinstance(start_date, datetime):
         start_date = start_date.date().__str__()
 
-    print(start_date, end_date)
-
     rs = bs.query_history_k_data_plus(symbol,
         "date,code,open,high,low,close,preclose,volume,amount,adjustflag,turn,tradestatus,pctChg,isST",
         start_date=start_date, end_date=end_date,
