@@ -35,17 +35,19 @@ def _get_start_date(end_date, freq):
     if isinstance(end_date, str):
         end_date = pd.to_datetime(end_date)
 
-    if freq == '1min':
+    if freq == '1':
         start_date = end_date - timedelta(days=30)
-    elif freq == '5min':
+    elif freq == '5':
         start_date = end_date - timedelta(days=70)
-    elif freq == '30min':
+    elif freq == '30':
         start_date = end_date - timedelta(days=500)
-    elif freq == 'D':
+    elif freq == '60':
+        start_date = end_date - timedelta(days=500)
+    elif freq == 'd':
         start_date = end_date - timedelta(weeks=500)
-    elif freq == 'W':
+    elif freq == 'w':
         start_date = end_date - timedelta(weeks=1000)
-    elif freq == 'M':
+    elif freq == 'm':
         start_date = end_date - timedelta(weeks=2000)
     else:
         raise ValueError("'freq' value error, current value is %s, "
@@ -75,19 +77,21 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
     """
     if count:
         start_date = _get_start_date(end_date, freq)
-        start_date = start_date.date().__str__().replace("-", "")
+        start_date = start_date.date().__str__()
 
         if isinstance(end_date, str):
             end_date = pd.to_datetime(end_date)
 
         end_date = end_date + timedelta(days=1)
-        end_date = end_date.date().__str__().replace("-", "")
+        end_date = end_date.date().__str__()
 
     if isinstance(end_date, datetime):
-        end_date = end_date.date().__str__().replace("-", "")
+        end_date = end_date.date().__str__()
 
     if isinstance(start_date, datetime):
-        start_date = start_date.date().__str__().replace("-", "")
+        start_date = start_date.date().__str__()
+
+    print(start_date, end_date)
 
     rs = bs.query_history_k_data_plus(symbol,
         "date,code,open,high,low,close,preclose,volume,amount,adjustflag,turn,tradestatus,pctChg,isST",
