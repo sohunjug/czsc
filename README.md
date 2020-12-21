@@ -7,9 +7,9 @@
 
 ## 问题讨论
 
->在 [issues](https://github.com/zengbin93/czsc/issues) 中提出了一些值得探讨的实战问题，欢迎积极参与讨论，我可以负责实现一些好的想法，代码开源。
+>在 [issues](https://github.com/sohunjug/czsc/issues) 中提出了一些值得探讨的实战问题，欢迎积极参与讨论，我可以负责实现一些好的想法，代码开源。
 
-* [如何分析选股策略的历史表现？](https://github.com/zengbin93/czsc/issues/17)
+* [如何分析选股策略的历史表现？](https://github.com/sohunjug/czsc/issues/17)
 
 ## 原文整理
 
@@ -24,7 +24,7 @@
 
 直接从github安装：
 ```
-pip install git+git://github.com/zengbin93/czsc.git -U
+pip install git+git://github.com/sohunjug/czsc.git -U
 ```
 
 从`pypi`安装：
@@ -60,8 +60,8 @@ pip install czsc -U -i https://pypi.python.org/simple
 
 ## examples
 
-* [pyecharts 可视化分析结果](https://github.com/zengbin93/czsc/blob/master/examples/pyecharts%20%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C.ipynb)
-* [使用CZSC进行三买选股](https://github.com/zengbin93/czsc/blob/master/examples/%E4%BD%BF%E7%94%A8CZSC%E8%BF%9B%E8%A1%8C%E4%B8%89%E4%B9%B0%E9%80%89%E8%82%A1.ipynb)
+* [pyecharts 可视化分析结果](https://github.com/sohunjug/czsc/blob/master/examples/pyecharts%20%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C.ipynb)
+* [使用CZSC进行三买选股](https://github.com/sohunjug/czsc/blob/master/examples/%E4%BD%BF%E7%94%A8CZSC%E8%BF%9B%E8%A1%8C%E4%B8%89%E4%B9%B0%E9%80%89%E8%82%A1.ipynb)
 
 
 ## 结合 tushare.pro 的数据使用
