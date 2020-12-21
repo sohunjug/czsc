@@ -110,6 +110,7 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
     else:
         df.rename(columns={'code': "symbol", "date": "dt", "volume": "vol"}, inplace=True)
 
+    df = df.dropna()
     df.drop_duplicates(subset='dt', keep='first', inplace=True)
     df.sort_values('dt', inplace=True)
     df['dt'] = df.dt.apply(str)
