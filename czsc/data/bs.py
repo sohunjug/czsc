@@ -114,12 +114,12 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
 
     df.drop_duplicates(subset='dt', keep='first', inplace=True)
     df.sort_values('dt', inplace=True)
-    df['dt'] = df.dt.apply(float)
-    df['open'] = df.dt.apply(float)
-    df['close'] = df.dt.apply(float)
-    df['high'] = df.dt.apply(float)
-    df['low'] = df.dt.apply(float)
-    df['vol'] = df.dt.apply(float)
+    df['dt'] = df.dt.apply(str)
+    df['open'] = df.open.apply(float)
+    df['close'] = df.close.apply(float)
+    df['high'] = df.high.apply(float)
+    df['low'] = df.low.apply(float)
+    df['vol'] = df.vol.apply(float)
     if freq in ('1','5','15','30','60'):
         # 清理 9:30 的空数据
         df['not_start'] = df.dt.apply(lambda x: not x.endswith("09:30:00"))
