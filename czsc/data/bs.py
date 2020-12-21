@@ -23,7 +23,14 @@ def get_index_stocks(symbol):
     >>> symbols2 = get_index_stocks("000300.XSHG", date=datetime.now())
     """
     industry_list = []
-    rs = bs.query_stock_industry()
+    if symbol == 'sz50':
+        rs = bs.query_sz50_stocks()
+    elif symbol == 'hs300':
+        rs = bs.query_hs300_stocks()
+    elif symbol == 'zz500':
+        rs = bs.query_zz500_stocks()
+    else:
+        rs = bs.query_stock_industry()
     while (rs.error_code == '0') & rs.next():
         # 获取一条记录，将记录合并在一起
         industry_list.append(rs.get_row_data())
