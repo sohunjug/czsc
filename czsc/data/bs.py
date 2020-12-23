@@ -9,6 +9,15 @@ print('login respond error_code:' + lg.error_code)
 print('login respond  error_msg:' + lg.error_msg)
 
 
+def get_stock_info(symbol):
+    rs = bs.query_stock_basic(code=symbol)
+    data_list = []
+    while (rs.error_code == '0') & rs.next():
+        # 获取一条记录，将记录合并在一起
+        data_list.append(rs.get_row_data())
+    result = pd.DataFrame(data_list, columns=rs.fields)
+    return result
+
 def get_index_stocks(symbol):
     """获取指数成份股
 
