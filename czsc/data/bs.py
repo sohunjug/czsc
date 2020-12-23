@@ -109,10 +109,17 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
     if isinstance(start_date, datetime):
         start_date = start_date.date().__str__()
 
-    rs = bs.query_history_k_data_plus(symbol,
-        "date,code,open,high,low,close,volume,amount",
-        start_date=start_date, end_date=end_date,
-        frequency=freq, adjustflag="2")
+    rs = None
+    if freq in ('d', 'w', 'm'):
+        rs = bs.query_history_k_data_plus(symbol,
+            "date,code,open,high,low,close,volume,amount",
+            start_date=start_date, end_date=end_date,
+            frequency=freq, adjustflag="2")
+    else:
+        rs = bs.query_history_k_data_plus(symbol,
+            "time,code,open,high,low,close,volume,amount",
+            start_date=start_date, end_date=end_date,
+            frequency=freq, adjustflag="2")
 
     data_list = []
     while (rs.error_code == '0') & rs.next():
@@ -121,10 +128,10 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
     df = pd.DataFrame(data_list, columns=rs.fields)
 
     # 统一 k 线数据格式为 6 列，分别是 ["symbol", "dt", "open", "close", "high", "low", "vr"]
-    if "min" in freq:
+    if freq in ('d', 'w', 'm'):
         df.rename(columns={'code': "symbol", "date": "dt", "volume": "vol"}, inplace=True)
     else:
-        df.rename(columns={'code': "symbol", "date": "dt", "volume": "vol"}, inplace=True)
+        df.rename(columns={'code': "symbol", "time": "dt", "volume": "vol"}, inplace=True)
 
     df = df.dropna()
     df.drop_duplicates(subset='dt', keep='first', inplace=True)
