@@ -202,6 +202,8 @@ class KlineAnalyze:
         else:
             self.kline_raw = kline
 
+        if len(self.kline_raw) <= 20:
+            return
         self.symbol = self.kline_raw[0]['symbol']
         self.start_dt = self.kline_raw[0]['dt']
         self.end_dt = self.kline_raw[-1]['dt']

@@ -5,8 +5,9 @@ from datetime import datetime, timedelta
 
 lg = bs.login()
 # 显示登陆返回信息
-print('login respond error_code:'+lg.error_code)
-print('login respond  error_msg:'+lg.error_msg)
+print('login respond error_code:' + lg.error_code)
+print('login respond  error_msg:' + lg.error_msg)
+
 
 def get_index_stocks(symbol):
     """获取指数成份股
@@ -37,7 +38,6 @@ def get_index_stocks(symbol):
     result = pd.DataFrame(industry_list, columns=rs.fields)
     return list(set([x for x in result.code]))
 
-
 def _get_start_date(end_date, freq):
     if isinstance(end_date, str):
         end_date = pd.to_datetime(end_date)
@@ -49,7 +49,7 @@ def _get_start_date(end_date, freq):
     elif freq == '15':
         start_date = end_date - timedelta(days=200)
     elif freq == '30':
-        start_date = end_date - timedelta(days=500)
+        start_date = end_date - timedelta(days=300)
     elif freq == '60':
         start_date = end_date - timedelta(days=500)
     elif freq == 'd':
@@ -101,7 +101,7 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
         start_date = start_date.date().__str__()
 
     rs = bs.query_history_k_data_plus(symbol,
-        "date,code,open,high,low,close,preclose,volume,amount,adjustflag,turn,tradestatus,pctChg,isST",
+        "date,code,open,high,low,close,volume,amount",
         start_date=start_date, end_date=end_date,
         frequency=freq, adjustflag="2")
 
