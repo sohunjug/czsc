@@ -150,12 +150,13 @@ def get_kline(symbol,  end_date, freq, start_date=None, count=None):
         df = df.tail(count)
 
     df.reset_index(drop=True, inplace=True)
+    # df.loc[:, "dt"] = pd.to_datetime(df['dt'])
     df["dt"] = df["dt"].apply(pd.to_datetime)
 
     k = df[['symbol', 'dt', 'open', 'close', 'high', 'low', 'vol']]
 
     for col in ['open', 'close', 'high', 'low']:
-        k[col] = k[col].apply(round, args=(2,))
+        k.loc[:, col] = k[col].apply(lambda x: round(x, 2))
 
     return k
 
